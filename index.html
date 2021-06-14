@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="StyleSheet" href="./files/style.css" type="text/css" media="all">
 
-    <title>LASR: Learning Articulated Shape Reconstruction from a Monocular Video</title>
+    <title>From Synthetic to Real: Unsupervised Domain Adaptationfor Animal Pose Estimation</title>
 
     <style type="text/css">
       body {
@@ -126,31 +126,19 @@
   <body>
 
     <div class="content content-title" style="text-align: center;">
-	    <h1>LASR: Learning Articulated Shape Reconstruction from a Monocular Video</h1>
+	    <h1>From Synthetic to Real: Unsupervised Domain Adaptationfor Animal Pose Estimation</h1>
 	<big style="color:grey;">
                     CVPR 2021
         </big>    
 	<p id="authors">
       <table align="center" style="width:100%; text-align:center; table-layout: fixed">
         <tr>
-	      <th><a href="https://gengshan-y.github.io/">Gengshan Yang<sup>1</sup></a></th>
-	      <th><a href="https://deqings.github.io/">Deqing Sun<sup>2</sup></a></th>
-	      <th><a href="https://varunjampani.github.io/">Varun Jampani<sup>2</sup></a></th>
-	      <th><a href="https://people.csail.mit.edu/drdaniel/">Daniel Vlasic<sup>2</sup></a></th>
-	      <th><a href="https://people.csail.mit.edu/fcole/">Forrester Cole<sup>2</sup></a></th>
+	      <th><a href="https://chaneyddtt.github.io/">Chen Li</a></th>
+	      <th><a href="https://www.comp.nus.edu.sg/~leegh/">Gim Hee Lee</a></th>
         </tr>
       </table>
       <table align="center" style="width:100%; text-align:center; table-layout: fixed">
-        <tr>
-	      <th><a href="https://scholar.google.com/citations?user=eZQNcvcAAAAJ&hl=en">Huiwen Chang<sup>2</sup></a></th>
-          <th><a href="http://www.cs.cmu.edu/~deva/">Deva Ramanan<sup>1</sup></a></th>
-	      <th><a href="https://billf.mit.edu/">William T. Freeman<sup>2</sup></a></th>
-	      <th><a href="https://people.csail.mit.edu/celiu/">Ce Liu<sup>2</sup></a></th>
-        </tr>
-      </table>
-      <table align="center" style="width:100%; text-align:center; table-layout: fixed">
-        <th><sup>1</sup>Carnegie Mellon University</th>
-        <th><sup>2</sup>Google Research</th>
+        <th>Department of Computer Science, National University of Singapore</th>
       </table>
 	    </p>
 	    <p>
@@ -162,35 +150,46 @@
 
     <div class="content">
       <figure style="font-family: Times; font-weight: normal; margin: 0px; padding: 0px; border: 0px; text-align: left">
-         <video playsinline controls autoplay loop muted width="810" height="320">
-          <source  src="./files/teaserv1.mp4" type="video/mp4">
+         <video playsinline controls autoplay loop muted width="400" height="225">
+          <source  src="./files/video4.mp4" type="video/mp4">
          </video>
+	 <video playsinline controls autoplay loop muted width="400" height="225">
+          <source  src="./files/video5.mp4" type="video/mp4">
+         </video>     
+	      
          <br>
 	      <figcaption> Many existing approaches on nonrigid shape reconstruction heavily rely on category-specific 3D shape templates, such as SMPL for human and SMAL for quadrupeds. In contrast, LASR jointly recovers the object shape, articulation and camera parameters from a monocular video without using category-specific shape templates. By combining generic shape and motion priors with differentiable rendering, LASR applies to a wide range of nonrigid shapes and obtains faithfull 3D reconstruciotn.
       </figure>
     </div>
     
     
-    
-    
-    
-    
     <div class="content">
       <h2>Abstract</h2>
       <p>
-        Remarkable progress has been made in 3D reconstruction of rigid structures from a video or a collection of images. However, it is still challenging to reconstruct nonrigid structures from RGB inputs, due to the under-constrained nature of this problem. While template-based approaches, such as parametric shape models, have achieved great success in terms of modeling the ``closed world" of known object categories, their ability to handle the ``open-world" of novel object categories and outlier shapes is still limited. In this work, we introduce a template-free approach for 3D shape learning from a single video. It adopts an analysis-by-synthesis strategy that forward-renders object silhouette, optical flow, and pixels intensities to compare against video observations, which generates gradients signals to adjust the camera, shape and motion parameters. Without relying on a category-specific shape template, our method faithfully reconstructs nonrigid 3D structures from videos of human, animals, and objects of unknown classes in the wild.
+        Animal pose estimation is an important field that has received increasing attention in the recent years.  
+	      The main challenge for this task is the lack of labeled data.   
+	      Existing works circumvent this problem with pseudo labels generated from data of other easily accessible domains such as synthetic data.  
+	      However, these pseudo labels are noisyeven with consistency check or confidence-based filtering due to the domain shift in the data.
+	      To solve this problem, we design a multi-scale domain adaptation module(MDAM) to reduce the domain gap between the syntheticand real data. 
+	      We further introduce an online coarse-to-fine pseudo label updating strategy.   
+	      Specifically, we propose a self-distillation module in an inner coarse-update loop and a mean-teacher in an outer fine-update loop to generate new pseudo labels that gradually replace the old ones.
+	      Consequently, our model is able to learn from the old pseudo labels at the early stage, and gradually switch to the new pseudo labels to prevent overfitting in the later stage. 
+	      We evaluate our approach on the TigDog and VisDA2019 datasets, where we outperform existing approaches by a large margin.   
+	      We also demonstrate the generalization ability of our model by testing extensively on both unseen domains and unseen animal categories.  
+	      Our code is avail-able at the project website.
 	    </p>
       <div id="teaser" style="margin: 12px; text-align: left;border-top: 1px solid lightgray;padding-top: 12px;">
-	<a href="http://www.contrib.andrew.cmu.edu/~gengshay/wordpress/wp-content/uploads/2021/lasr.pdf">
+	<a href="https://arxiv.org/pdf/2103.14843.pdf">
 	        <strong>[Paper]</strong>
-	      </a>           
+	      <a href="https://github.com/chaneyddtt/UDA-Animal-Pose">           
 	        <strong>[Code]</strong>
 	      </a>           
 	        <strong>[Slides]</strong>
 	      </a>           
       </div>
     </div>
-    
+ 
+<!--
     <div class="content">
             <h2>Bibtex</h2>
             <p class="description">@inproceedings{yang2021lasr,
@@ -208,13 +207,14 @@
   year={2021}
 }  </p>
     </div>
-   
+-->
+	    
     <div class="content">
       <div style="float: right; width:70px; margin-top: 0px; margin-bottom: 25px">
       </div>
       <h2>Video</h2>
          <video controls width="810" height="520">
-          <source  src="./files/video.mp4" type="video/mp4">
+          <source  src="./files/cvpr2021_video.mp4" type="video/mp4">
          </video>
     </div>
 
@@ -225,141 +225,22 @@
         <h3> Dance-twirl </h3>
         <div>
          <video playsinline controls autoplay muted loop width="49%">
-          <source  src="./files/results/dance-output-1.mp4" type="video/mp4">
+          <source  src="./files/results/video1.mp4" type="video/mp4">
          </video>
          <video playsinline controls autoplay muted loop width="49%">
-          <source  src="./files/results/dance-output-2.mp4" type="video/mp4">
+          <source  src="./files/results/video2.mp4" type="video/mp4">
          </video>
          </div>
         
-        <h3> Scooter-board </h3>
-         <div>
-         <video playsinline controls autoplay loop muted width="49%">
-          <source  src="./files/results/scooter-board-output-1.mp4" type="video/mp4">
-         </video>
-         <video playsinline controls autoplay loop muted width="49%">
-          <source  src="./files/results/scooter-board-output-2.mp4" type="video/mp4">
-         </video>
-         </div>
-
-        <h3> Soapbox </h3>
-         <div>
-         <video playsinline controls autoplay muted loop width="49%">
-          <source  src="./files/results/soapbox-output-1.mp4" type="video/mp4">
-         </video>
-         <video playsinline controls autoplay muted loop width="49%">
-          <source  src="./files/results/soapbox-output-2.mp4" type="video/mp4">
-         </video>
-         </div>
-         
-        <h3> Car-turn <h3>
-         <div>
-         <video playsinline controls autoplay muted loop width="49%">
-          <source  src="./files/results/rcar-turn-output-1.mp4" type="video/mp4">
-         </video>
-         <video playsinline controls autoplay muted loop width="49%">
-          <source  src="./files/results/rcar-turn-output-2.mp4" type="video/mp4">
-         </video>
-         </div>
-
-        <h3> Camel </h3>
-         <div>
-         <video playsinline controls autoplay muted loop width="49%">
-          <source  src="./files/results/camel-output-1.mp4" type="video/mp4">
-         </video>
-         <video playsinline controls autoplay muted loop width="49%">
-          <source  src="./files/results/camel-output-2.mp4" type="video/mp4">
-         </video>
-        </div>
-
-        <h3> Bear </h3>
-         <div>
-         <video playsinline controls autoplay muted loop width="49%">
-          <source  src="./files/results/bear-output-1.mp4" type="video/mp4">
-         </video>
-         <video playsinline controls autoplay muted loop width="49%">
-          <source  src="./files/results/bear-output-2.mp4" type="video/mp4">
-         </video>
-         </div>
-
-        <h3> Dog </h3>
-         <div>
-         <video playsinline controls autoplay muted loop width="49%">
-          <source  src="./files/results/rdog-output-1.mp4" type="video/mp4">
-         </video>
-         <video playsinline controls autoplay muted loop width="49%">
-          <source  src="./files/results/rdog-output-2.mp4" type="video/mp4">
-         </video>
-         </div>
-
-        
-        <h3> Cows </h3>
-         <div>
-         <video playsinline controls autoplay muted loop width="49%">
-          <source  src="./files/results/rcows-output-1.mp4" type="video/mp4">
-         </video>
-         <video playsinline controls autoplay muted loop width="49%">
-          <source  src="./files/results/rcows-output-2.mp4" type="video/mp4">
-         </video>
-         </div>
-
-        <h3> Horsejump-low </h3>
-         <div>
-         <video playsinline controls autoplay muted loop width="49%">
-          <source  src="./files/results/rhorsejump-low-output-1.mp4" type="video/mp4">
-         </video>
-         <video playsinline controls autoplay muted loop width="49%">
-          <source  src="./files/results/rhorsejump-low-output-2.mp4" type="video/mp4">
-         </video>
-         </div>
-
-        <h3> Horsejump-high </h3>
-         <div>
-         <video playsinline controls autoplay muted loop width="49%">
-          <source  src="./files/results/rhorsejump-high-output-1.mp4" type="video/mp4">
-         </video>
-         <video playsinline controls autoplay muted loop width="49%">
-          <source  src="./files/results/rhorsejump-high-output-2.mp4" type="video/mp4">
-         </video>
-         </div>
-         
-        <h3> Cat (Pikachu) captured by Gengshan </h3>
-         <div>
-         <video playsinline controls autoplay muted loop width="49%">
-          <source  src="./files/results/pika-output-1.mp4" type="video/mp4">
-         </video>
-         <video playsinline controls autoplay muted loop width="49%">
-          <source  src="./files/results/pika-output-2.mp4" type="video/mp4">
-         </video>
-         </div>
-
-
     </div>
 
-    <div class="content">
-            <h2>Related projects on shape and motion recovery</h2>
-            <p>
-             <a href="http://gvv.mpi-inf.mpg.de/projects/Neural_NRSfM/">Neural Dense Non-Rigid Structure from Motion with Latent Space Constraints. ECCV 2020.</a> <br>
-             <a href="https://akanazawa.github.io/cmr/">Learning Category-Specific Mesh Reconstruction from Image Collections. ECCV 2018.</a> <br>
-             <a href="https://sites.google.com/nvidia.com/unsup-mesh-2020/">Self-supervised Single-view 3D Reconstruction via Semantic Consistency. ECCV 2020.</a> <br>
-             <a href="https://shubham-goel.github.io/ucmr/">Shape and Viewpoints without Keypoints. ECCV. 2020.</a> <br>
-             <a href="https://nileshkulkarni.github.io/acsm/">Articulation Aware Canonical Surface Mapping. CVPR 2020.</a> <br> 
-             <a href="https://github.com/benjiebob/SMALify">Creatures great and SMAL: Recovering the shape and motion of animals from video. ACCV 2018.</a> <br>
-             <a href="https://github.com/silviazuffi/smalst">Three-D Safari: Learning to Estimate Zebra Pose, Shape, and Texture from Images "In the Wild". ICCV 2019.</a> <br>
-             <a href="https://github.com/mkocabas/VIBE">VIBE: Video Inference for Human Body Pose and Shape Estimation. CVPR 2020.</a> <br>
-            </p>
-    </div>
+   
 
-    <div class="content">
-            <h2>Acknowledgments</h2>
-            <p>This work was partially done during internship at Google. Thanks to Xueting Li, Nilesh Kulkarni and Benjamin Biggs for providing pre-trained models/implementations, Zhoutong Zhang and other friends at Google as well as CMU for valuable suggestions. </p>
-    </div>
-
-
+  
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="20">
 <tr><td>
     <p align="right"><font size="2">
-        <a href="https://www.cs.cmu.edu/~peiyunh/">Webpage design borrowed from Peiyun Hu</a> </font>
+        <a href="https://lasr-google.github.io/">Webpage design borrowed from LASR</a> </font>
     </p>
 </td></tr>
 </table>
